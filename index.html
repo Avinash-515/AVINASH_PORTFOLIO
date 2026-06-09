@@ -282,6 +282,48 @@
     line-height: 1.1;
   }
 
+  .resume-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resume-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+
+  .resume-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .resume-card p,
+  .resume-card li {
+    color: #d1d5db;
+    line-height: 1.7;
+  }
+
+  .resume-card ul {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .download-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .download-row .btn-outline {
+    min-width: 180px;
+  }
+
   /* SKILLS */
   .skills-grid {
     display: grid;
@@ -691,6 +733,7 @@
 <nav>
   <div class="nav-logo">DSA<span style="color:var(--muted);">.</span></div>
   <ul class="nav-links">
+    <li><a href="#resume">resume</a></li>
     <li><a href="#skills">skills</a></li>
     <li><a href="#projects">projects</a></li>
     <li><a href="#experience">experience</a></li>
@@ -709,6 +752,7 @@
     <div class="hero-cta">
       <a href="mailto:sai990750@gmail.com" class="btn-primary">Get in touch</a>
       <a href="#projects" class="btn-outline">View projects</a>
+      <a href="resume.pdf" download="Avinash_DSA_Resume.pdf" class="btn-outline">Download Resume</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -730,6 +774,32 @@
     </div>
   </div>
 </div>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="reveal">
+    <div class="section-tag">Resume</div>
+    <h2 class="section-title">Resume Snapshot</h2>
+  </div>
+  <div class="resume-grid reveal">
+    <div class="resume-card">
+      <h3>Professional Summary</h3>
+      <p>Full Stack Developer with hands-on experience in Python, Java, React, and cloud-native systems. Skilled in building scalable APIs, blockchain proof-of-concept applications, and deploying production-ready solutions.</p>
+    </div>
+    <div class="resume-card">
+      <h3>Key Highlights</h3>
+      <ul>
+        <li>3 internships and multiple shipped projects in software development.</li>
+        <li>Published peer-reviewed paper on blockchain-integrated security.</li>
+        <li>Strong grasp of AWS, Flask/Django, React, Solidity, and distributed systems.</li>
+      </ul>
+    </div>
+    <div class="resume-card">
+      <h3>Education</h3>
+      <p>B.Tech in Computer Science & Engineering, graduating 2026 — Vijayawada, AP.</p>
+    </div>
+  </div>
+</section>
 
 <!-- SKILLS -->
 <section id="skills">
