@@ -430,6 +430,80 @@
     margin-bottom: 1.25rem;
   }
 
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .gallery-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+
+  .project-card.clickable { cursor: pointer; }
+
+  .project-detail {
+    display: none;
+    background: rgba(15, 18, 30, 0.95);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 24px;
+    margin-top: 2rem;
+  }
+
+  .project-detail.visible { display: block; }
+
+  .project-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-detail-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .close-detail {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .close-detail:hover { border-color: var(--accent); color: var(--accent); }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(110,231,183,0.25);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-caption {
+    padding: 0.85rem 0.9rem 0.95rem;
+    font-size: 0.78rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+
   .project-badge {
     display: inline-block;
     font-family: 'DM Mono', monospace;
@@ -523,7 +597,7 @@
     padding: 0.5rem 0;
   }
 
-  .pub-content {}
+  
 
   .pub-journal {
     font-family: 'DM Mono', monospace;
@@ -885,7 +959,7 @@
     <h2 class="section-title">Projects</h2>
   </div>
   <div class="projects-grid">
-    <div class="project-card reveal">
+    <div id="stego-project-card" class="project-card reveal clickable">
       <div class="project-year">2025 – 2026</div>
       <div class="project-badge">Published Research</div>
       <div class="project-title">Blockchain-Integrated Image Steganography System</div>
@@ -909,6 +983,34 @@
         <span class="tag">React.js</span>
         <span class="tag">REST APIs</span>
         <span class="tag">Caching</span>
+      </div>
+    </div>
+  </div>
+  <div id="stego-detail" class="project-detail">
+    <div class="project-detail-header">
+      <div>
+        <div class="project-badge">Project Output</div>
+        <h3 class="project-detail-title">Blockchain Image Steganography Screens</h3>
+        <p class="project-desc">Click the project above to reveal the app output screens: hide data, successful IPFS/blockchain store, extract data, and verification analytics.</p>
+      </div>
+      <button class="close-detail">Close</button>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img src="screenshots/stego-01.jpg" alt="Steganography hide data screen">
+        <div class="project-caption">Hide data workflow with image upload and secret text entry.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="screenshots/stego-02.jpg" alt="Steganography success and blockchain transaction">
+        <div class="project-caption">Success view showing IPFS and blockchain confirmation details.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="screenshots/stego-03.jpg" alt="Steganography extract data screen">
+        <div class="project-caption">Extract data interface for retrieving hidden content.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="screenshots/stego-04.jpg" alt="Steganography verification and analytics tabs">
+        <div class="project-caption">Verification and analytics views for ownership and system status.</div>
       </div>
     </div>
   </div>
@@ -1075,6 +1177,24 @@
     el.dataset.delay = (i % 4) * 80;
     observer.observe(el);
   });
+
+  const stegoCard = document.getElementById('stego-project-card');
+  const stegoDetail = document.getElementById('stego-detail');
+  const closeDetail = document.querySelector('.close-detail');
+
+  if (stegoCard && stegoDetail) {
+    stegoCard.addEventListener('click', () => {
+      stegoDetail.classList.add('visible');
+      stegoDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  if (closeDetail && stegoDetail) {
+    closeDetail.addEventListener('click', () => {
+      stegoDetail.classList.remove('visible');
+      stegoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
 
   // Active nav link
   const sections = document.querySelectorAll('section[id]');
